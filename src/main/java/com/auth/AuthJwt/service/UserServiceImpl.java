@@ -1,16 +1,15 @@
 package com.auth.AuthJwt.service;
-
+import com.auth.AuthJwt.DTO.RegisterRequest;
+import com.auth.AuthJwt.Mapper.LoginRequestMapper;
 import com.auth.AuthJwt.configuration.JwtUtils;
 import com.auth.AuthJwt.entities.User;
 import com.auth.AuthJwt.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.security.authentication.AuthenticationManager;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 @Service
 @Transactional
@@ -19,18 +18,22 @@ public class UserServiceImpl implements UserServiceInterface{
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
+    private final LoginRequestMapper loginRequestMapper;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, JwtUtils jwtUtils, LoginRequestMapper loginRequestMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtUtils = jwtUtils;
+        this.loginRequestMapper = loginRequestMapper;
     }
 
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+
 
     @Override
     public User Register(User user) {
@@ -72,6 +75,8 @@ public class UserServiceImpl implements UserServiceInterface{
             return null;
         }
     }
+
+
 
 
 }

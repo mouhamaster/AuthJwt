@@ -10,8 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-
+// Cette classe CustomUserDetailsService sert à dire à Spring Security comment charger un utilisateur depuis la base de données lors du login.
 @Service
+//Génère automatiquement un constructeur avec les arguments final
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;

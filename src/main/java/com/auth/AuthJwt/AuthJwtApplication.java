@@ -14,14 +14,5 @@ public class AuthJwtApplication {
 
 		SpringApplication.run(AuthJwtApplication.class, args);
 	}
-	@Bean
-	CommandLineRunner commandLineRunner(UserServiceImpl userServiceImpl) {
-		return args -> {
-			User user = new User();
-			user.setUsername("Mouhamed");
-			user.setPassword("admin123");
-			user.setRole("ADMIN");
-			userServiceImpl.Register(user);
-		};
-	}
+
 }
